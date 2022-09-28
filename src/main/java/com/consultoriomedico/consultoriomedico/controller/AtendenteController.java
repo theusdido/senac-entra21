@@ -1,5 +1,7 @@
 package com.consultoriomedico.consultoriomedico.controller;
 
+import java.util.List;
+
 import com.consultoriomedico.consultoriomedico.model.AtendenteEntity;
 import com.consultoriomedico.consultoriomedico.repository.AtendenteRepository;
 
@@ -20,16 +22,22 @@ public class AtendenteController {
     private AtendenteRepository repositorio;    
     
     @PostMapping
-    public int add(@RequestBody AtendenteEntity atentendeREST){
-        AtendenteEntity atendente = new AtendenteEntity();
-        atendente.setNome(atentendeREST.getNome());
-
-        this.repositorio.save(atendente);
-        return atendente.getId();
+    public int add(@RequestBody AtendenteEntity atendenteREST){
+        int id = 0;
+        if (atendenteREST.getId() == 0){
+            AtendenteEntity atendente = new AtendenteEntity();
+            atendente.setNome(atendenteREST.getNome());    
+            this.repositorio.save(atendente);
+            id = atendente.getId();
+        }else{
+            this.repositorio.save(atendenteREST);
+            id = atendenteREST.getId();
+        }        
+        return id;
     }
 
     @GetMapping
-    public String teste(){
-        return "teste";
+    public List<AtendenteEntity> listar(){
+        return this.repositorio.findAll();
     }
 }
