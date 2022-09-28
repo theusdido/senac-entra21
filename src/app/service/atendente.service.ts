@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root'
@@ -11,9 +11,17 @@ export class AtendenteService {
   ) { }
 
   salvar(dados:any){
-    let form_data = new FormData();
-    form_data.append('dados',dados);
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Access-Control-Allow-Origin' : '*'
+      })
+    };
 
-    return this.http.post('/atendente',form_data);
+    return this.http.post(
+      'http://localhost:8080/atendente',
+      dados,
+      httpOptions
+    );
   }
+  
 }
