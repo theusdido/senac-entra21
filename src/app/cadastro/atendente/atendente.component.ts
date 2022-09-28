@@ -8,10 +8,7 @@ import { AtendenteService } from 'src/app/service/atendente.service';
 })
 export class AtendenteComponent implements OnInit {
 
-  public dados:any = {
-    id:0,
-    nome:''
-  };
+  public dados:any;
 
   public field_form = '';
   constructor(
@@ -19,6 +16,7 @@ export class AtendenteComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
+    this.novo();
   }
 
   salvar(){
@@ -29,6 +27,17 @@ export class AtendenteComponent implements OnInit {
     }
 
     this.atendente_service.salvar(this.dados)
-    .subscribe();
+    .subscribe(
+      (response:any) => {
+        this.dados.id = response;
+      }
+    );
+  }
+
+  novo(){
+    this.dados = {
+      id:0,
+      nome:''
+    }
   }
 }
