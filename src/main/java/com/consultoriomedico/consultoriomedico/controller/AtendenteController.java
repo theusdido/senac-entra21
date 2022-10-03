@@ -1,13 +1,16 @@
 package com.consultoriomedico.consultoriomedico.controller;
 
 import java.util.List;
+import java.util.Optional;
 
 import com.consultoriomedico.consultoriomedico.model.AtendenteEntity;
 import com.consultoriomedico.consultoriomedico.repository.AtendenteRepository;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -39,5 +42,20 @@ public class AtendenteController {
     @GetMapping
     public List<AtendenteEntity> listar(){
         return this.repositorio.findAll();
+    }
+
+    @GetMapping(value = "{id}")
+    public Optional<AtendenteEntity> editar(
+        @PathVariable("id") int id
+    ){
+        return this.repositorio.findById(id);
+    }
+
+    @DeleteMapping (value = "{id}")
+    public boolean deletar(
+        @PathVariable("id") int id
+    ){
+        this.repositorio.deleteById(id);
+        return true;
     }
 }
