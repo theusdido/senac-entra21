@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AtendenteService } from 'src/app/service/atendente.service';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-atendente',
@@ -8,15 +9,25 @@ import { AtendenteService } from 'src/app/service/atendente.service';
 })
 export class AtendenteComponent implements OnInit {
 
-  public dados:any;
+  public dados:any = {id:0,nome:''};
 
   public field_form = '';
   constructor(
-    public atendente_service:AtendenteService
+    public atendente_service:AtendenteService,
+    public router:ActivatedRoute
   ) { }
 
   ngOnInit(): void {
-    this.novo();
+    this.router.params.subscribe(
+      (params:any) => {
+        if (params.id != undefined){
+          this.atendente_service.editar(params.id)
+          .subscribe(
+            (response:any) => { this.dados = response } 
+          );
+        }
+      }
+    );
   }
 
   salvar(){
@@ -32,12 +43,5 @@ export class AtendenteComponent implements OnInit {
         this.dados.id = response;
       }
     );
-  }
-
-  novo(){
-    this.dados = {
-      id:0,
-      nome:''
-    }
   }
 }

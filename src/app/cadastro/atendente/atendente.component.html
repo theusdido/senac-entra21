@@ -1,25 +1,35 @@
-<h1>Atendente</h1>
-<hr/>
-<form>
-    <div class="mb-3">
-        <label for="nome" class="form-label">Nome</label>
-        <input 
-            type="text" 
-            class="form-control {{ field_form }}" 
-            id="nome" 
-            name="nome" 
-            aria-describedby="Nome"
-            [(ngModel)]="dados.nome"
-        >
+<div class="container">
+    <div class="row">
+        <div class="col">
+            <h1>Atendente</h1>
+            <hr/>
+        </div>
     </div>
-    <button 
-        type="button" 
-        class="btn btn-primary"
-        (click)="salvar()"
-    >Salvar</button>
-    <button 
-        class="btn btn-info"
-        type="button" 
-        (click)="novo()"
-    >Novo</button>
-</form>
+    <div class="row">
+        <div class="col btn-col">
+            <a class="btn btn-link" routerLink="/atendente">Voltar</a>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col">   
+            <form>
+                <div class="mb-3">
+                    <label for="nome" class="form-label">Nome</label>
+                    <input 
+                        type="text" 
+                        class="form-control {{ field_form }}" 
+                        id="nome" 
+                        name="nome" 
+                        aria-describedby="Nome"
+                        [(ngModel)]="dados.nome"
+                    >
+                </div>
+                <button 
+                    type="button" 
+                    class="btn btn-primary"
+                    (click)="salvar()"
+                >Salvar</button>
+            </form>
+        </div>
+    </div>
+</div>    

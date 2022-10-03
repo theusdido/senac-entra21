@@ -5,3 +5,8 @@
     border:1px solid #FF0000 !important;
     background-color: #ffe5e5 !important;
 }
+
+.btn-col {
+    display:flex;
+    justify-content: flex-end;
+}

@@ -3,6 +3,19 @@
         <div class="col">
             <h1>Lista de Atendente</h1>
             <hr/>
+        </div>
+    </div>    
+    <div class="row">
+        <div class="col btn-col">
+            <button 
+                class="btn btn-info"
+                type="button" 
+                (click)="novo()"
+            >Novo</button>                
+        </div>
+    </div>
+    <div class="row">
+        <div class="col">        
             <table class="table">
                 <thead>
                 <tr>
@@ -16,8 +29,8 @@
                     <tr *ngFor="let atendente of dados">
                         <th scope="row">{{ atendente.id }}</th>
                         <td>{{ atendente.nome }}</td>
-                        <td><a href="#">Editar</a></td>
-                        <td><a href="#">Excluir</a></td>
+                        <td><button class="btn btn-link" (click)="editar(atendente.id)">Editar</button></td>
+                        <td><button class="btn btn-link" (click)="excluir(atendente.id)">Excluir</button></td>
                     </tr>
                 </tbody>
             </table>
