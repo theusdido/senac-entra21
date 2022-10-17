@@ -1,0 +1,18 @@
+<form>
+    <fieldset>
+      <legend>Autenticação</legend>
+      <div>
+        <label for="login">Login</label>
+        <br />
+        <input type="text" id="login" name="login" [(ngModel)]="login" />
+      </div>
+      <div>
+        <label for="senha">Senha</label>
+        <br />
+        <input type="password" id="senha" name="senha" [(ngModel)]="senha" />
+      </div>
+      <div>
+        <input type="button" value="Entrar" (click)="entrar()" />
+      </div>
+    </fieldset>
+  </form>
